@@ -62,6 +62,26 @@
       color: #2563eb;
     }
 
+    /* ── Lang toggle ── */
+    .lang-toggle {
+      margin-left: 12px;
+      padding: 4px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      background: transparent;
+      color: #555;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .lang-toggle:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+    }
+
     /* ── Wrapper ── */
     .wrapper {
       display: flex;
@@ -235,12 +255,12 @@
     @media (max-width: 768px) {
       .nav-inner {
         justify-content: center;
-        gap: 20px;
-        padding: 0 20px;
+        gap: 16px;
+        padding: 0 16px;
       }
 
       .nav-inner a {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
       }
 
       .wrapper {
@@ -272,12 +292,13 @@
   <!-- ═══════ Nav ═══════ -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#service">Service</a>
-      <a href="#awards">Awards</a>
-      <a href="#hobbies">Hobbies</a>
+      <a href="#about" data-en="About" data-zh="关于">About</a>
+      <a href="#education" data-en="Education" data-zh="教育">Education</a>
+      <a href="#experience" data-en="Experience" data-zh="经历">Experience</a>
+      <a href="#service" data-en="Service" data-zh="服务">Service</a>
+      <a href="#awards" data-en="Awards" data-zh="获奖">Awards</a>
+      <a href="#hobbies" data-en="Hobbies" data-zh="爱好">Hobbies</a>
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">中文</button>
     </div>
   </nav>
 
@@ -291,11 +312,9 @@
         <img class="sidebar-avatar" src="DSC_0448.jpg" alt="Yan Zhang">
 
         <h1>Yan Zhang</h1>
-        <p class="role">CS Undergraduate<br>Peking University</p>
+        <p class="role" data-en="CS Undergraduate<br>Peking University" data-zh="计算机科学本科生<br>北京大学">CS Undergraduate<br>Peking University</p>
 
-        <p class="bio">
-          Yuanpei College,majored in cs
-        </p>
+        <p class="bio" data-en="Yuanpei College, majored in CS" data-zh="元培学院，计算机科学与技术专业">Yuanpei College, majored in CS</p>
 
         <ul class="contact-list">
           <li>
@@ -322,20 +341,24 @@
       <main class="main">
 
         <section id="about">
-          <h2>About</h2>
-          <p style="color:#444; font-size:0.92rem; line-height:1.8;">
-            I'm a student of YuanPei College at Peking University, majoring in Computer Science.
+          <h2 data-en="About" data-zh="关于">About</h2>
+          <p style="color:#444; font-size:0.92rem; line-height:1.8;"
+             data-en="I'm a student of Yuanpei College at Peking University, majoring in Computer Science. I'm currently an intern at Alibaba Tongyi Group, where I focus on AI infrastructure — building and optimizing the systems that power large-scale machine learning training and inference workloads. My research interests include distributed systems, ML systems, and large-scale inferencing."
+             data-zh="我是北京大学元培学院计算机科学与技术专业的学生。目前在阿里通义集团实习，专注于AI基础设施——构建和优化大规模机器学习训练和推理系统。研究方向包括分布式系统、ML系统和大规模推理。">
+            I'm a student of Yuanpei College at Peking University, majoring in Computer Science.
             I'm currently an intern at Alibaba Tongyi Group, where I focus on AI infrastructure — building and optimizing the systems that power large-scale machine learning training and inference workloads.
             My research interests include distributed systems, ML systems, and large-scale inferencing.
           </p>
         </section>
 
         <section id="education">
-          <h2>Education</h2>
+          <h2 data-en="Education" data-zh="教育">Education</h2>
           <div class="card">
-            <div class="card-title">Peking University — Yuanpei College</div>
-            <div class="card-meta">B.S. Computer Science & Technology · 2023.9 – Present</div>
-            <div class="card-desc">
+            <div class="card-title" data-en="Peking University — Yuanpei College" data-zh="北京大学 — 元培学院">Peking University — Yuanpei College</div>
+            <div class="card-meta" data-en="B.S. Computer Science & Technology · 2023.9 – Present" data-zh="计算机科学与技术学士 · 2023.9 – 至今">B.S. Computer Science & Technology · 2023.9 – Present</div>
+            <div class="card-desc"
+                 data-en="Yuanpei College offers PKU's most flexible undergraduate curriculum, allowing me to take advanced courses across CS, math, and interdisciplinary fields."
+                 data-zh="元培学院提供北大最灵活的本科课程体系，使我可以跨计算机、数学和交叉学科自由选课。">
               Yuanpei College offers PKU's most flexible undergraduate curriculum,
               allowing me to take advanced courses across CS, math, and interdisciplinary fields.
             </div>
@@ -343,11 +366,13 @@
         </section>
 
         <section id="experience">
-          <h2>Experience</h2>
+          <h2 data-en="Experience" data-zh="经历">Experience</h2>
           <div class="card">
-            <div class="card-title">Alibaba Tongyi Group</div>
-            <div class="card-meta">Intern · 2026.2 – Present</div>
-            <div class="card-desc">
+            <div class="card-title" data-en="Alibaba Tongyi Group" data-zh="阿里通义集团">Alibaba Tongyi Group</div>
+            <div class="card-meta" data-en="Intern · 2026.2 – Present" data-zh="实习 · 2026.2 – 至今">Intern · 2026.2 – Present</div>
+            <div class="card-desc"
+                 data-en="Working on AI infrastructure — building and optimizing systems for large-scale machine learning training and inference workloads."
+                 data-zh="从事AI基础设施相关工作——构建和优化大规模机器学习训练和推理系统。">
               Working on AI infrastructure — building and optimizing systems for
               large-scale machine learning training and inference workloads.
             </div>
@@ -355,39 +380,47 @@
         </section>
 
         <section id="service">
-          <h2>Service</h2>
+          <h2 data-en="Service" data-zh="服务">Service</h2>
           <div class="card">
-            <div class="card-title">Teaching Assistant — ICS</div>
-            <div class="card-meta">Peking University · 2025 – 2026 Spring</div>
-            <div class="card-desc">
+            <div class="card-title" data-en="Teaching Assistant — ICS" data-zh="教学助理 — ICS">Teaching Assistant — ICS</div>
+            <div class="card-meta" data-en="Peking University · 2025 – 2026 Spring" data-zh="北京大学 · 2025 – 2026 春季">Peking University · 2025 – 2026 Spring</div>
+            <div class="card-desc"
+                 data-en="TA for the Introduction to Computer Science course at PKU."
+                 data-zh="担任北京大学计算机科学导论课程助教。">
               TA for the Introduction to Computer Science course at PKU.
             </div>
           </div>
         </section>
 
         <section id="awards">
-          <h2>Awards</h2>
+          <h2 data-en="Awards" data-zh="获奖">Awards</h2>
           <div class="card">
-            <div class="card-title">May Fourth Scholarship</div>
-            <div class="card-meta">Peking University · 2024 – 2025 Academic Year</div>
-            <div class="card-desc">
+            <div class="card-title" data-en="May Fourth Scholarship" data-zh="五四奖学金">May Fourth Scholarship</div>
+            <div class="card-meta" data-en="Peking University · 2024 – 2025 Academic Year" data-zh="北京大学 · 2024 – 2025 学年">Peking University · 2024 – 2025 Academic Year</div>
+            <div class="card-desc"
+                 data-en="PKU's highest undergraduate honor, awarded to approximately the top 1% of students."
+                 data-zh="北京大学最高本科荣誉，每年仅约1%的学生获此奖项。">
               PKU's highest undergraduate honor, awarded to approximately the top 1% of students.
             </div>
           </div>
           <div class="card">
-            <div class="card-title">Huatai Securities Scholarship</div>
-            <div class="card-meta">2023 – 2024 Academic Year</div>
-            <div class="card-desc">
-              corporate scholarship.
-            </div>
+            <div class="card-title" data-en="Huatai Securities Scholarship" data-zh="华泰证券奖学金">Huatai Securities Scholarship</div>
+            <div class="card-meta" data-en="2023 – 2024 Academic Year" data-zh="2023 – 2024 学年">2023 – 2024 Academic Year</div>
+            <div class="card-desc" data-en="Corporate scholarship." data-zh="企业奖学金。">Corporate scholarship.</div>
           </div>
         </section>
 
         <section id="hobbies">
-          <h2>Hobbies</h2>
+          <h2 data-en="Hobbies" data-zh="爱好">Hobbies</h2>
           <div class="hobby-list">
-            <div class="hobby-item">Badminton <span style="color:#888; font-size:0.82rem;">~ level 3.0 – 3.5</span></div>
-            <div class="hobby-item">Guitar <span style="color:#888; font-size:0.82rem;">self-taught, beginner</span></div>
+            <div class="hobby-item">
+              <span data-en="Badminton" data-zh="羽毛球">Badminton</span>
+              <span style="color:#888; font-size:0.82rem;" data-en=" ~ level 3.0 – 3.5" data-zh=" 约3.0 – 3.5级"> ~ level 3.0 – 3.5</span>
+            </div>
+            <div class="hobby-item">
+              <span data-en="Guitar" data-zh="吉他">Guitar</span>
+              <span style="color:#888; font-size:0.82rem;" data-en=" self-taught, beginner" data-zh=" 自学，初学者"> self-taught, beginner</span>
+            </div>
           </div>
         </section>
 
@@ -396,6 +429,36 @@
     </div><!-- /wrapper -->
 
   </div><!-- /overlay -->
+
+  <script>
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.getElementById('langBtn').textContent = lang === 'en' ? '中文' : 'EN';
+      document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+        const val = el.getAttribute(lang === 'en' ? 'data-en' : 'data-zh');
+        if (el.tagName === 'P' && el.querySelector('br') === null && !el.querySelector('span')) {
+          el.textContent = val;
+        } else if (el.querySelector('br') === null && !el.querySelector('span') && !el.querySelector('a') && !el.querySelector('svg')) {
+          el.textContent = val;
+        } else if (el.tagName === 'P' || el.classList.contains('role') || el.classList.contains('card-desc') || el.classList.contains('bio') || el.classList.contains('card-title') || el.classList.contains('card-meta') || el.classList.contains('hobby-item') || el.tagName === 'H2' || el.tagName === 'A') {
+          el.innerHTML = val;
+        } else {
+          el.innerHTML = val;
+        }
+      });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    }
+
+    function toggleLang() {
+      setLang(currentLang === 'en' ? 'zh' : 'en');
+    }
+
+    // Init
+    if (currentLang === 'zh') setLang('zh');
+  </script>
 
 </body>
 </html>
