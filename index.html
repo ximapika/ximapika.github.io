@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yan Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #2c2c2c;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Full-width blurred overlay ── */
+    .overlay {
+      min-height: 100vh;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .nav-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      padding: 0 40px;
+      height: 52px;
+    }
+
+    .nav-inner a {
+      text-decoration: none;
+      color: #555;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-inner a:hover {
+      color: #2563eb;
+    }
+
+    /* ── Wrapper ── */
+    .wrapper {
+      display: flex;
+      max-width: 1060px;
+      margin: 0 auto;
+      min-height: calc(100vh - 52px);
+    }
+
+    /* ── Left Sidebar (sticky) ── */
+    .sidebar {
+      position: sticky;
+      top: 52px;
+      width: 300px;
+      height: 100vh;
+      padding: 60px 40px 40px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-avatar {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+
+    .sidebar h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .sidebar .role {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .sidebar .bio {
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .sidebar .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .sidebar .contact-list a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .sidebar .contact-list a:hover {
+      color: #2563eb;
+      background: rgba(37,99,235,0.08);
+    }
+
+    .sidebar .contact-list svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 0.78rem;
+      color: #999;
+    }
+
+    /* ── Right Content (scrollable) ── */
+    .main {
+      flex: 1;
+      padding: 60px 0 80px 40px;
+      max-width: 760px;
+    }
+
+    .main section {
+      margin-bottom: 56px;
+    }
+
+    .main section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(0,0,0,0.06);
+    }
+
+    /* ── Cards ── */
+    .card {
+      margin-bottom: 16px;
+      padding: 20px 0;
+    }
+
+    .card:not(:last-child) {
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .card-meta {
+      font-size: 0.84rem;
+      color: #777;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* ── Badges ── */
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: rgba(0,0,0,0.04);
+      color: #444;
+      transition: background 0.2s;
+    }
+
+    .badge:hover {
+      background: rgba(0,0,0,0.08);
+    }
+
+    /* ── Hobbies ── */
+    .hobby-list {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hobby-item {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .nav-inner {
+        justify-content: center;
+        gap: 20px;
+        padding: 0 20px;
+      }
+
+      .nav-inner a {
+        font-size: 0.8rem;
+      }
+
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 40px 28px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .sidebar-footer {
+        margin-top: 20px;
+      }
+
+      .main {
+        padding: 32px 28px 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ Nav ═══════ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#service">Service</a>
+      <a href="#awards">Awards</a>
+      <a href="#hobbies">Hobbies</a>
+    </div>
+  </nav>
+
+  <!-- ═══════ Full-page blurred overlay ═══════ -->
+  <div class="overlay">
+
+    <div class="wrapper">
+
+      <!-- ═══════ Sidebar ═══════ -->
+      <aside class="sidebar">
+        <img class="sidebar-avatar" src="DSC_0448.jpg" alt="Yan Zhang">
+
+        <h1>Yan Zhang</h1>
+        <p class="role">CS Undergraduate<br>Peking University</p>
+
+        <p class="bio">
+          Yuanpei College,majored in cs
+        </p>
+
+        <ul class="contact-list">
+          <li>
+            <a href="https://github.com/ximapika" target="_blank" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:2697164036@qq.com" title="Email">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="zy2697164036" title="WeChat">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.07 6.257c-3.033 0-5.487 2.327-5.487 5.196 0 2.87 2.454 5.197 5.487 5.197.55 0 1.072-.075 1.563-.216a.502.502 0 01.416.057l1.106.658a.191.191 0 00.098.032.171.171 0 00.169-.171.23.23 0 00-.028-.124l-.225-.86a.331.331 0 01.123-.385c1.064-.78 1.744-1.98 1.744-3.318 0-2.518-2.265-4.502-4.966-4.502zm-2.03 2.361c.375 0 .678.307.678.685a.682.682 0 01-.678.685.682.682 0 01-.678-.685c0-.378.303-.685.678-.685zm4.06 0c.375 0 .678.307.678.685a.682.682 0 01-.678.685.682.682 0 01-.679-.685c0-.378.304-.685.679-.685z"/></svg>
+            </a>
+          </li>
+        </ul>
+
+        <p class="sidebar-footer">&copy; 2026 Yan Zhang</p>
+      </aside>
+
+      <!-- ═══════ Main Content ═══════ -->
+      <main class="main">
+
+        <section id="about">
+          <h2>About</h2>
+          <p style="color:#444; font-size:0.92rem; line-height:1.8;">
+            I'm a student of YuanPei College at Peking University, majoring in Computer Science.
+            I'm currently an intern at Alibaba Tongyi Group, where I focus on AI infrastructure — building and optimizing the systems that power large-scale machine learning training and inference workloads.
+            My research interests include distributed systems, ML systems, and large-scale inferencing.
+          </p>
+        </section>
+
+        <section id="education">
+          <h2>Education</h2>
+          <div class="card">
+            <div class="card-title">Peking University — Yuanpei College</div>
+            <div class="card-meta">B.S. Computer Science & Technology · 2023.9 – Present</div>
+            <div class="card-desc">
+              Yuanpei College offers PKU's most flexible undergraduate curriculum,
+              allowing me to take advanced courses across CS, math, and interdisciplinary fields.
+            </div>
+          </div>
+        </section>
+
+        <section id="experience">
+          <h2>Experience</h2>
+          <div class="card">
+            <div class="card-title">Alibaba Group</div>
+            <div class="card-meta">Intern · 2026.2 – Present</div>
+            <div class="card-desc">
+              Working on AI infrastructure — building and optimizing systems for
+              large-scale machine learning training and inference workloads.
+            </div>
+          </div>
+        </section>
+
+        <section id="service">
+          <h2>Service</h2>
+          <div class="card">
+            <div class="card-title">Teaching Assistant — ICS</div>
+            <div class="card-meta">Peking University · 2025 – 2026 Spring</div>
+            <div class="card-desc">
+              TA for the Introduction to Computer Science course at PKU.
+            </div>
+          </div>
+        </section>
+
+        <section id="awards">
+          <h2>Awards</h2>
+          <div class="card">
+            <div class="card-title">May Fourth Scholarship</div>
+            <div class="card-meta">Peking University · 2024 – 2025 Academic Year</div>
+            <div class="card-desc">
+              PKU's highest undergraduate honor, awarded to approximately the top 1% of students.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Huatai Securities Scholarship</div>
+            <div class="card-meta">2023 – 2024 Academic Year</div>
+            <div class="card-desc">
+              Awarded for outstanding academic performance in Computer Science.
+            </div>
+          </div>
+        </section>
+
+        <section id="hobbies">
+          <h2>Hobbies</h2>
+          <div class="hobby-list">
+            <div class="hobby-item">Badminton <span style="color:#888; font-size:0.82rem;">~ level 3.0 – 3.5</span></div>
+            <div class="hobby-item">Guitar <span style="color:#888; font-size:0.82rem;">self-taught, beginner</span></div>
+          </div>
+        </section>
+
+      </main>
+
+    </div><!-- /wrapper -->
+
+  </div><!-- /overlay -->
+
+</body>
+</html>
